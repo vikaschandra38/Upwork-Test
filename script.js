@@ -1,21 +1,26 @@
 async function openInstagramApp() {
-  // Detect installed app (replace with server-side detection if necessary)
-  const installedApps = await window.navigator.getInstalledApps();
-  const isInstagramInstalled = installedApps.some(app => app.id === 'com.instagram.android');
+    // Check if Instagram app is installed
+    var userAgent = navigator.userAgent || window.opera;
+    
+    if (/android/i.test(userAgent)) {
+        // Android device
+        var timeout = 2000; // Timeout in milliseconds
+        var startTime = Date.now();
 
-  // Attempt direct app launch (modify link for iOS devices)
-  if (isInstagramInstalled) {
-    try {
-      const installedInstagramApp = await window.navigator.getInstalledApps({ name: 'Instagram' });
-      await installedInstagramApp[0].launch();
-      return; // App opened successfully
-    } catch (err) {
-      console.error('Error launching Instagram app:', err);
+        // Attempt to open Instagram app
+        var iframe = document.createElement('iframe');
+        iframe.style.display = 'none';
+        iframe.src = 'instagram://app';
+        document.body.appendChild(iframe);
+
+        setTimeout(function() {
+            var endTime = Date.now();
+            // If Instagram app does not open within the timeout, redirect to Google Play Store
+            if (endTime - startTime < timeout) {
+                window.location.href = 'https://play.google.com/store/apps/details?id=com.instagram.android';
+            }
+        }, timeout);
     }
-  }
-
-  // Fallback to Play Store
-  window.location.href = 'https://play.google.com/store/apps/details?id=com.instagram.android';
 }
 
 const openAppButton = document.getElementById('openAppButton');
