@@ -1,12 +1,12 @@
 async function openInstagramApp() {
   // Detect installed app (replace with server-side detection if necessary)
-  const installedApps = await navigator.getInstalledApps();
+  const installedApps = await window.navigator.getInstalledApps();
   const isInstagramInstalled = installedApps.some(app => app.id === 'com.instagram.android');
 
   // Attempt direct app launch (modify link for iOS devices)
   if (isInstagramInstalled) {
     try {
-      const installedInstagramApp = await navigator.getInstalledApps({ name: 'Instagram' });
+      const installedInstagramApp = await window.navigator.getInstalledApps({ name: 'Instagram' });
       await installedInstagramApp[0].launch();
       return; // App opened successfully
     } catch (err) {
