@@ -1,6 +1,6 @@
 function openInstagramApp() {
 // Open Instagram
-const url = "intent://user?username=exampleuser;instagram.com/#Intent;scheme=https;package=com.instagram.android;end";
+const url = "intent://instagram.com/#Intent;user?username=vikaschandra38;scheme=https;package=com.instagram.android;end";
 
 window.location.replace(url); 
 }
