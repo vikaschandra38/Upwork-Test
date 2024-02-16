@@ -1,7 +1,7 @@
 function openInstagramApp() {
 // Open Instagram
-const url = "intent://instagram.com/SplashScreen#Intent;user?username=vikaschandra38;scheme=https;package=com.instagram.android;end";
-window.location.replace(url); 
+const url = "intent://instagram.com/SplashScreen#Intent;scheme=https;package=com.instagram.android;end";
+window.location.href = (url); 
 }
 
 function openInstagramLink(){
